@@ -180,7 +180,6 @@ class IsoDisplayObject extends IsoContainer, implements IIsoDisplayObject
 	 * The positional value based on the isometric x-axis.
 	 */
 	var isoX : Float;
-
 	var oldX : Float;
 
 	// xxx TODO was marked as [Bindable("move")] in original

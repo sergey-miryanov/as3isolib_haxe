@@ -1,8 +1,59 @@
 #!/bin/sh
-if [ "" != "$1" ]; then
+
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+
+if [ "clean" == "$1" ]; then
 	echo "Cleaning..."
 	rm -rf bin
 	exit
 fi
 
-haxelib run nme test build.nmml cpp
+if [ "cpp" == "$1" ]; then
+	haxelib run nme test build.nmml cpp
+	exit
+fi
+
+if [ "windows" == "$1" ]; then
+	haxelib run nme test build.nmml windows
+	exit
+fi
+
+if [ "mac" == "$1" ]; then
+	haxelib run nme test build.nmml mac
+	exit
+fi
+
+if [ "linux" == "$1" ]; then
+	haxelib run nme test build.nmml linux
+	exit
+fi
+
+if [ "webos" == "$1" ]; then
+	haxelib run nme test build.nmml webos
+	exit
+fi
+
+if [ "android" == "$1" ]; then
+	haxelib run nme test build.nmml android
+	exit
+fi
+
+if [ "ios" == "$1" ]; then
+	haxelib run nme build build.nmml ios -simulator
+	exit
+fi
+
+if [ "flash" == "$1" ]; then
+	haxelib run nme build build.nmml flash -web
+	echo "Complete. Can be viewed in your browser at:" 
+	echo "file://${DIR}/bin/flash/bin/index.html"
+	exit
+fi
+
+if [ "html5" == "$1" ]; then
+	haxelib run nme build build.nmml html5
+	exit
+fi
+
+echo "Usage: build [target|clean]"
+

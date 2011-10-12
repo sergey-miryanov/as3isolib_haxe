@@ -11,6 +11,7 @@ import flash.geom.Rectangle;
 
 interface IIsoDisplayObject implements IIsoContainer
 {
+	var usePreciseValues : Bool;
 	var renderAsOrphan(getRenderAsOrphan, setRenderAsOrphan) : Bool;
 	var isoBounds(getIsoBounds, never) : IBounds;
 	var screenBounds(getScreenBounds, never) : Rectangle;
