@@ -1,3 +1,6 @@
+2011-12-11
+Update to r328 revision
+
 2011-10-08
 Initial import includes sources that compile the existing samples. Flash and CPP (NME) targets work
 Please add comments from original source code to the port. The comments were lost in the initial automatic conversion.
