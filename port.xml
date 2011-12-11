@@ -1,0 +1,24 @@
+<port>
+	<info>As3isolib (v1.0) is an open-source ActionScript 3.0 Isometric Library developed to assist in creating isometrically projected content (such as games and graphics) targeted for the Flash player platform. As3isolib includes utilities, primitives and views. As3isolib was developed with simplicity, speed and performance in mind so that developers can focus on actual implementations rather than having to learn a complex API. The as3isolib is loosely based on a scenegraph implementation.</info>
+	<license value="MIT">
+	<target name="flash" version="9" />
+	<target name="nme" />
+	<target name="cpp" />
+
+	<url name="homepage" value="http://code.google.com/p/as3isolib/" />
+	<url name="source" value="http://code.google.com/p/as3isolib/source/browse/trunk" />
+	<url name="tutorials" value="http://code.google.com/p/as3isolib/w/list" />
+	<url name="documentation" value="http://as3isolib.googlecode.com/svn/trunk/fp10/asdoc/index.html" />
+
+	<maintainer name ="Russell Weir" emailUser="damonsbane" emailDomain="gmail.com" />
+
+	<version value="1.0.0">
+		<basedOn type="vcs" version="327" /> 
+		<depends>
+		</depends>
+		<status value="incomplete" data="Not complete, but functional on samples. Please contribute to it." />
+		<issues>
+			<issue status="open">Waiting for NME to add DisplayObect.getBounds()</issue>
+		</issues>
+	</version>
+<port>
