@@ -154,12 +154,7 @@ class Node extends EventDispatcherProxy, implements INode
 
 	public function getChildren() : Array<INode>
 	{
-		var temp : Array<INode> = [];
-
-		for(child in childrenArray)
-			temp.push(child);
-
-		return temp;
+		return childrenArray;
 	}
 
 	public function getNumChildren() : Int
