@@ -1,4 +1,4 @@
-## as3isolib
+# as3isolib
 
 as3isolib - An open-source haxe-port of Isometric Library as3isolib developed to assist 
 in creating isometrically projected content (such as games and graphics) 
@@ -15,6 +15,6 @@ as3isolib_haxe imported from haxeports project to github to easy maintance and u
 
 ## references
 
-http://code.google.com/p/as3isolib/
-http://code.google.com/p/haxeports/
+* http://code.google.com/p/as3isolib/
+* http://code.google.com/p/haxeports/
 
