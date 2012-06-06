@@ -43,15 +43,9 @@ class ProxyEvent extends Event
 	/**
 	* Just another accessor for the proxy property.
 	*/
-#if flash9
 	@:getter(target) function get_target() : {} {
 		return proxy;
 	}
-#else
-	override function get_target() : Dynamic {
-		return proxy;
-	}
-#end
 
 	override public function clone() : Event
 	{
