@@ -159,7 +159,7 @@ class IsoView extends Sprite, implements IIsoView
 		{
 			var ndx : Float = 0;
 			var ndy : Float = 0;
-			var rect : Rectangle = #if flash romTarget.getBounds(this) #else romTarget.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
+			var rect : Rectangle = #if (flash || js) romTarget.getBounds(this) #else romTarget.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
 			var isROMBigger : Bool = !romBoundsRect.containsRect(rect);
 			if(isROMBigger) 
 			{

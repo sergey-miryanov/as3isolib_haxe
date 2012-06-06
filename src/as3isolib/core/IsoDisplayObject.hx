@@ -43,7 +43,7 @@ class IsoDisplayObject extends IsoContainer, implements IIsoDisplayObject
 	 */
 	public function getRenderData() : RenderData
 	{
-		var r : Rectangle = #if flash mainContainer.getBounds(mainContainer) #else mainContainer.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
+		var r : Rectangle = #if (flash || js) mainContainer.getBounds(mainContainer) #else mainContainer.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
 		if(isInvalidated || cachedRenderData==null) 
 		{
 			var flag : Bool = bRenderAsOrphan; //set to allow for rendering regardless of hierarchy
@@ -108,7 +108,7 @@ class IsoDisplayObject extends IsoContainer, implements IIsoDisplayObject
 	 */
 	public function getScreenBounds() : Rectangle
 	{
-		var screenBounds : Rectangle = #if flash mainContainer.getBounds(mainContainer) #else mainContainer.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
+		var screenBounds : Rectangle = #if (flash || js) mainContainer.getBounds(mainContainer) #else mainContainer.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
 		screenBounds.x += mainContainer.x;
 		screenBounds.y += mainContainer.y;
 

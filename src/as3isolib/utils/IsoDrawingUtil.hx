@@ -127,7 +127,7 @@ class IsoDrawingUtil
 		target.renderAsOrphan = true;
 		target.render();
 		target.renderAsOrphan = oldOrphanValue;
-		var rect : Rectangle = #if flash target.container.getBounds(target.container) #else target.container.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
+		var rect : Rectangle = #if (flash || js) target.container.getBounds(target.container) #else target.container.nmeGetPixelBounds() #end; // todo nme needs a real getBounds()
 		var bitmapdata : BitmapData = new BitmapData(Std.int(rect.width), Std.int(rect.height), true, 0);
 		bitmapdata.draw(target.container, new Matrix(1, 0, 0, 1, rect.x * -1, rect.y * -1));
 		return bitmapdata;
