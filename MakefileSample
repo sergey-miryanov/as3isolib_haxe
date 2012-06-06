@@ -1,0 +1,36 @@
+DIR=${shell pwd}
+
+clean:
+	rm -rf bin
+
+cpp:
+	haxelib run nme test build.nmml cpp
+
+windows:
+	haxelib run nme test build.nmml windows
+
+mac:
+	haxelib run nme test build.nmml mac
+
+linux:
+	haxelib run nme test build.nmml linux
+
+webos:
+	haxelib run nme test build.nmml webos
+
+android:
+	haxelib run nme test build.nmml android
+
+ios:
+	haxelib run nme build build.nmml ios -simulator
+
+flash:
+	haxelib run nme build build.nmml flash -web
+	echo "Complete. Can be viewed in your browser at:" >/dev/null
+	echo "file://${DIR}/bin/flash/bin/index.html" >/dev/null
+
+html5:
+	haxelib run nme build build.nmml html5
+
+
+
