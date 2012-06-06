@@ -51,7 +51,12 @@ class IsoDisplayObject extends IsoContainer, implements IIsoDisplayObject
 
 			render(true);
 
-			var bd : BitmapData = new BitmapData(Std.int(r.width) + 1, Std.int(r.height) + 1, true, 0x000000);
+#if neko
+			var fillColor = {a : 0, rgb : 0};
+#else
+			var fillColor = 0;
+#end
+			var bd : BitmapData = new BitmapData(Std.int(r.width) + 1, Std.int(r.height) + 1, true, fillColor);
 			bd.draw(mainContainer, new Matrix(1, 0, 0, 1, -r.left, -r.top));
 
 			var renderData : RenderData = new RenderData();
