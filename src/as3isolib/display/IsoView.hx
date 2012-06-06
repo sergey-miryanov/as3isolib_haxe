@@ -330,28 +330,14 @@ class IsoView extends Sprite, implements IIsoView
 
 	var _w : Float;
 	var _h : Float;
-#if flash
 	@:getter(width) function get_width() : Float {
 		return _w;
 	}
-#else
-	override function nmeGetWidth() : Float
-	{
-		return _w;
-	}
-#end
 
-#if flash
 	@:getter(height) function get_height() : Float
 	{
 		return _h;
 	}
-#else
-	override function nmeGetHeight() : Float
-	{
-		return _h;
-	}
-#end
 
 	public function getSize() : Point
 	{
