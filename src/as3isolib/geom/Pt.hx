@@ -51,17 +51,10 @@ class Pt extends Point
 		return new Pt(nx, ny, nz);
 	}
 
-#if flash
 	@:getter(length) function getLength() : Float
 	{
 		return Math.sqrt(x * x + y * y + z * z);
 	}
-#else
-	override function get_length() : Float
-	{
-		return Math.sqrt(x * x + y * y + z * z);
-	}
-#end
 
 	override public function clone() : Point
 	{
