@@ -80,9 +80,9 @@ class Node extends EventDispatcherProxy, implements INode
 	//////////////////////////////////////////////////////////////////
 	var ownerObject : Dynamic;
 
-	public function getOwner() : Dynamic
+	public function getOwner() : INode
 	{
-		return (ownerObject != null) ? ownerObject : parentNode;
+		return (ownerObject != null) ? cast (ownerObject, INode) : parentNode;
 	}
 
 

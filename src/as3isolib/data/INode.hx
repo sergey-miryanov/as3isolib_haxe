@@ -24,7 +24,7 @@ interface INode implements IEventDispatcherProxy
 	function setName(value : String) : String;
 	function getData() : Dynamic;
 	function setData(value : Dynamic) : Dynamic;
-	function getOwner() : Dynamic;
+	function getOwner() : INode;
 	function getParent() : INode;
 	function getHasParent() : Bool;
 	function getRootNode() : INode;
