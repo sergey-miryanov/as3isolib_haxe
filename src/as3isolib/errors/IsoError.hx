@@ -4,11 +4,13 @@
 
 package as3isolib.errors;
 
+import flash.errors.Error;
+
 class IsoError extends Error
 {
 	public var info : String;
-	public var data : Object;
-	public function new(message : String, info : String, data : Object)
+	public var data : Dynamic;
+	public function new(message : String, info : String, data : Dynamic)
 	{
 		super(message);
 		this.info = info;
