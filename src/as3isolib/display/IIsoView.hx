@@ -43,7 +43,7 @@ interface IIsoView implements IEventDispatcher, implements IInvalidation
 	function zoom(zFactor : Float) : Void;
 	function reset() : Void;
 	function render(recursive : Bool = false) : Void;
-	//function getWidth() : Float;
-	//function getHeight() : Float;
+	function getWidth() : Float;
+	function getHeight() : Float;
 	function getMainContainer() : Sprite;
 }

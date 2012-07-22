@@ -339,6 +339,16 @@ class IsoView extends Sprite, implements IIsoView
 		return _h;
 	}
 
+	public function getWidth () : Float
+	{
+		return _w;
+	}
+
+	public function getHeight () : Float
+	{
+		return _h;
+	}
+
 	public function getSize() : Point
 	{
 		return new Point(_w, _h);
