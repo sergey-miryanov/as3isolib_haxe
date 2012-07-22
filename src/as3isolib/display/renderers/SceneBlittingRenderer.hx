@@ -12,51 +12,66 @@ import as3isolib.errors.IsoError;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
-import flash.utils.getTimer;
 
 class SceneBlittingRenderer implements ISceneRenderer
 {
-	public var target(getTarget, setTarget) : Object;
+	public var target(getTarget, setTarget) : Dynamic;
 	var _targetBitmap : Bitmap;
-	var _targetObject : Object;
-	public function getTarget() : Object
+	var _targetObject : Dynamic;
+	public function getTarget() : Dynamic
 	{
 		return _targetObject;
 	}
-	public function setTarget(value : Object) : Object
+	public function setTarget(value : Dynamic) : Dynamic
 	{
 		if(_targetObject != value) 
 		{
 			_targetObject = value;
-			if(_targetObject is Bitmap) _targetBitmap = Bitmap(_targetObject)			else if(_targetObject.hasOwnProperty("bitmap")) _targetBitmap = Bitmap(_targetObject.bitmap)			else throw new IsoError("");
+			if (Std.is (_targetObject, Bitmap))
+			{
+				_targetBitmap = cast (_targetObject, Bitmap);
+			}
+			else if(Reflect.hasField (_targetObject, "bitmap"))
+			{
+				_targetBitmap = cast (_targetObject.bitmap, Bitmap);
+			}
+			else
+				throw new IsoError("", "", null);
 		}
 ;
 	}
 	public var view : IIsoView;
 	public function renderScene(scene : IIsoScene) : Void
 	{
-		if(!_targetBitmap) return;
-		var sortedChildren : Array<Dynamic> = scene.displayListChildren.slice();
+		if(_targetBitmap == null)
+			return;
+
+		var sortedChildren : Array<Dynamic> = scene.displayListChildren.slice(0);
 		sortedChildren.sort(isoDepthSort);
 		var child : IIsoDisplayObject;
-		var i : UInt;
-		var m : UInt = sortedChildren.length;
+		var i : Int = 0;
+		var m : Int = sortedChildren.length;
 		while(i < m)
 		{
-			child = IIsoDisplayObject(sortedChildren[i]);
+			child = cast (sortedChildren[i], IIsoDisplayObject);
 			if(child.depth != i) scene.setChildIndex(child, i);
 			i++;
 		}
 ;
 		var offsetMatrix : Matrix = new Matrix();
-		offsetMatrix.tx = view.width / 2 - view.currentX;
-		offsetMatrix.ty = view.height / 2 - view.currentY;
-		var sceneBitmapData : BitmapData = new BitmapData(view.width, view.height, true, 0);
+		offsetMatrix.tx = view.getWidth () / 2 - view.currentX;
+		offsetMatrix.ty = view.getHeight () / 2 - view.currentY;
+		var sceneBitmapData : BitmapData = new BitmapData(Std.int (view.getWidth ()),
+				Std.int (view.getHeight ()),
+				true, 0);
+
 		sceneBitmapData.draw(scene.container, offsetMatrix);
-		if(_targetBitmap.bitmapData) _targetBitmap.bitmapData.dispose();
+		if(_targetBitmap.bitmapData != null)
+			_targetBitmap.bitmapData.dispose();
+
 		_targetBitmap.bitmapData = sceneBitmapData;
 	}
-	function isoDepthSort(childA : Object, childB : Object) : Int
+	function isoDepthSort(childA : Dynamic, childB : Dynamic) : Int
 	{
 		var boundsA : IBounds = childA.isoBounds;
 		var boundsB : IBounds = childB.isoBounds;
