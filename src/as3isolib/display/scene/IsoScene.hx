@@ -28,7 +28,7 @@ class IsoScene extends IsoContainer, implements IIsoScene
 	public var hostContainer(getHostContainer, setHostContainer) : DisplayObjectContainer;
 	public var invalidatedChildren(getInvalidatedChildren, never) : Array<IIsoContainer>;
 	public var layoutRenderer(getLayoutRenderer, setLayoutRenderer) : Dynamic;
-	public var styleRenderers(getStyleRenderers, setStyleRenderers) : Array<IFactory>;
+	public var styleRenderers(getStyleRenderers, setStyleRenderers) : Iterable <ISceneLayoutRenderer>;
 
 	var _isoBounds : IBounds;
 	public function getIsoBounds() : IBounds
@@ -142,18 +142,14 @@ class IsoScene extends IsoContainer, implements IIsoScene
 	}
 
 	public var stylingEnabled : Bool;
-	var styleRendererFactories : Array<IFactory>;
+	var styleRendererFactories : Iterable <ISceneLayoutRenderer>;
 
-	public function getStyleRenderers() : Array<IFactory>
+	public function getStyleRenderers() : Iterable <ISceneLayoutRenderer>
 	{
-		var temp : Array<IFactory> = [];
-		var factory : IFactory;
-		for(factory in styleRendererFactories)
-			temp.push(factory);
-		return temp;
+		return styleRendererFactories;
 	}
 
-	public function setStyleRenderers(value : Array<IFactory>) : Array<IFactory>
+	public function setStyleRenderers(value : Iterable <ISceneLayoutRenderer>) : Iterable <ISceneLayoutRenderer>
 	{
 		if(value != null) styleRendererFactories = value;
 		else styleRendererFactories = null;
@@ -181,14 +177,11 @@ class IsoScene extends IsoContainer, implements IIsoScene
 				if(sceneLayoutRenderer != null)
 					sceneLayoutRenderer.renderScene(this);
 			}
-			var sceneRenderer : ISceneRenderer;
-			var factory : IFactory;
-			if(stylingEnabled && styleRendererFactories.length > 0) 
+			if(stylingEnabled && !Lambda.empty (styleRendererFactories))
 			{
 				mainContainer.graphics.clear();
-				for(factory in styleRendererFactories)
+				for(sceneRenderer in styleRendererFactories)
 				{
-					sceneRenderer = factory.newInstance();
 					if(sceneRenderer != null)
 						sceneRenderer.renderScene(this);
 				}
@@ -214,7 +207,7 @@ class IsoScene extends IsoContainer, implements IIsoScene
 		layoutEnabled = true;
 		bLayoutIsFactory = true;
 		stylingEnabled = true;
-		styleRendererFactories = new Array<IFactory>();
+		styleRendererFactories = new Array<ISceneLayoutRenderer>();
 		super();
 		layoutObject = new ClassFactory(DefaultSceneLayoutRenderer);
 	}
